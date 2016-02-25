@@ -1,1 +1,1 @@
-var app = angular.module('StarWars', []);
+var app = angular.module('StarWars', ['ui.grid']);

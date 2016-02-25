@@ -14,7 +14,20 @@ app.service('StarWarsService', ['$http', '$q', function($http, $q) {
 				});
 				skywalker.data.films = skywalkerFilms;
 				deferred.resolve(skywalker.data);
+			})
+			.catch(function(error) {
+				error.message = "Your request failed, sorry! - Bieber";
+				deferred.reject(error);
 			});
 		return deferred.promise;
+	};
+}]);
+
+app.service('iTunesService', ['$http', '$q', function($http, $q) {
+	this.getBeebz = function() {
+		return $http.jsonp('https://itunes.apple.com/search?term=justin+bieber&callback=JSON_CALLBACK')
+			.then(function(beebz) {
+				return beebz.data.results;
+			});
 	};
 }]);
